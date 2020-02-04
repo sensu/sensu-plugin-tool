@@ -1,4 +1,4 @@
-module github.com/sensu-community/sensu-plugin-go
+module github.com/sensu-community/sensu-plugin-tool
 
 go 1.13
 

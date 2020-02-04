@@ -1,7 +1,7 @@
 package cmd
 
 import (
-	"github.com/sensu-community/sensu-plugin-go/cmd/newcmd"
+	"github.com/sensu-community/sensu-plugin-tool/cmd/newcmd"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
@@ -13,8 +13,8 @@ var (
 
 func NewRootCommand(args []string) *cobra.Command {
 	cmd := &cobra.Command{
-		Use:   "sensu-plugin-go",
-		Short: "Sensu Plugin Go Tool",
+		Use:   "sensu-plugin-tool",
+		Short: "Sensu Plugin Tool",
 	}
 
 	cmd.PersistentFlags().String(flagLogLevel, "warning", "Set the log level (trace, debug, info, warning, error, fatal, panic")

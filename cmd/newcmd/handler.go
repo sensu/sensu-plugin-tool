@@ -1,6 +1,7 @@
 package newcmd
 
 import (
+	"errors"
 	"fmt"
 	"os"
 	"path"
@@ -9,9 +10,10 @@ import (
 	"time"
 
 	survey "github.com/AlecAivazis/survey/v2"
-	"github.com/sensu-community/sensu-plugin-go/util"
+	"github.com/sensu-community/sensu-plugin-tool/util"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
+	"github.com/spf13/viper"
 	"gopkg.in/src-d/go-git.v4"
 	"gopkg.in/src-d/go-git.v4/plumbing/object"
 	"gopkg.in/src-d/go-git.v4/storage/memory"
@@ -116,7 +118,7 @@ func newHandlerCommand(logger *logrus.Logger) *cobra.Command {
 				logger: logger,
 			}
 
-			if len(args) == 0 {
+			if cmd.Flags().NFlag() == 0 {
 				// interactive mode
 				err := survey.Ask(handlerQs, &project)
 				if err != nil {
@@ -124,12 +126,35 @@ func newHandlerCommand(logger *logrus.Logger) *cobra.Command {
 				}
 			} else {
 				// flag mode
-				cmd.Flags().String("name", "", "Name of the project (required)")
-				cmd.Flags().String("description", "", "Description of the project (required)")
-				cmd.Flags().String("github-user", "", "Github username that the plugin will belong to (required)")
-				cmd.Flags().String("github-project", "", "Github project name that the plugin will belong to (required)")
-				cmd.Flags().String("copyright-year", DefaultHandlerCopyrightYear, "The copyright year to be used in the LICENSE file")
-				cmd.Flags().String("copyright-holder", "", "The copyright holder to be used in the LICENSE file")
+				project.Name = viper.GetString("name")
+				project.TemplateURL = viper.GetString("template-url")
+				project.Description = viper.GetString("description")
+				project.GithubUser = viper.GetString("github-user")
+				project.GithubProject = viper.GetString("github-project")
+				project.CopyrightYear = viper.GetString("copyright-year")
+				project.CopyrightHolder = viper.GetString("copyright-holder")
+
+				if project.Name == "" {
+					return errors.New("name cannot be empty")
+				}
+				if project.TemplateURL == "" {
+					return errors.New("template-url cannot be empty")
+				}
+				if project.Description == "" {
+					return errors.New("description cannot be empty")
+				}
+				if project.GithubUser == "" {
+					return errors.New("github-user cannot be empty")
+				}
+				if project.GithubProject == "" {
+					return errors.New("github-project cannot be empty")
+				}
+				if project.CopyrightYear == "" {
+					return errors.New("copyright-year cannot be empty")
+				}
+				if project.CopyrightHolder == "" {
+					return errors.New("copyright-holder cannot be empty")
+				}
 			}
 
 			if err := project.createProject(); err != nil {
@@ -141,6 +166,23 @@ func newHandlerCommand(logger *logrus.Logger) *cobra.Command {
 			return nil
 		},
 	}
+
+	cmd.Flags().String("name", "", "Name of the project (required)")
+	cmd.Flags().String("template-url", DefaultHandlerTemplateURL, "URL of the handler template repository to use")
+	cmd.Flags().String("description", "", "Description of the project (required)")
+	cmd.Flags().String("github-user", "", "Github username that the plugin will belong to (required)")
+	cmd.Flags().String("github-project", "", "Github project name that the plugin will belong to (required)")
+	cmd.Flags().String("copyright-year", DefaultHandlerCopyrightYear, "The copyright year to be used in the LICENSE file")
+	cmd.Flags().String("copyright-holder", "", "The copyright holder to be used in the LICENSE file")
+
+	viper.BindPFlag("name", cmd.Flags().Lookup("name"))
+	viper.BindPFlag("template-url", cmd.Flags().Lookup("template-url"))
+	viper.BindPFlag("description", cmd.Flags().Lookup("description"))
+	viper.BindPFlag("github-user", cmd.Flags().Lookup("github-user"))
+	viper.BindPFlag("github-project", cmd.Flags().Lookup("github-project"))
+	viper.BindPFlag("copyright-year", cmd.Flags().Lookup("copyright-year"))
+	viper.BindPFlag("copyright-holder", cmd.Flags().Lookup("copyright-holder"))
+
 	return cmd
 }
 
