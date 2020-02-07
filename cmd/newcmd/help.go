@@ -8,8 +8,11 @@ import (
 func NewHelpCommand(logger *logrus.Logger) *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "new",
-		Short: "TODO: description here",
+		Short: "Create a new plugin from a template",
 	}
 	cmd.AddCommand(newHandlerCommand(logger))
+	cmd.AddCommand(newCheckCommand(logger))
+	cmd.AddCommand(newMutatorCommand(logger))
+	cmd.AddCommand(newSensuctlCommand(logger))
 	return cmd
 }

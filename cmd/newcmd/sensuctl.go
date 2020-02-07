@@ -10,9 +10,9 @@ import (
 )
 
 var (
-	DefaultHandlerTemplateURL = "https://github.com/sensu-community/handler-plugin-template"
+	DefaultSensuctlTemplateURL = "https://github.com/sensu-community/sensuctl-plugin-template"
 
-	handlerTmplFiles = []string{
+	sensuctlTmplFiles = []string{
 		"go.mod",
 		"LICENSE",
 		"main.go",
@@ -20,17 +20,17 @@ var (
 	}
 )
 
-func newHandlerCommand(logger *logrus.Logger) *cobra.Command {
+func newSensuctlCommand(logger *logrus.Logger) *cobra.Command {
 	cmd := &cobra.Command{
-		Use:   "handler",
-		Short: "Create a new handler plugin from a template",
+		Use:   "sensuctl",
+		Short: "Create a new sensuctl command plugin from a template",
 		RunE: func(cmd *cobra.Command, args []string) error {
-			project := plugintool.NewProject(logger, handlerTmplFiles)
+			project := plugintool.NewProject(logger, sensuctlTmplFiles)
 
 			if cmd.Flags().NFlag() == 0 {
 				// interactive mode
 				// ask for the template url
-				if err := survey.Ask(plugintool.TemplateURLQuestion(DefaultHandlerTemplateURL), &project); err != nil {
+				if err := survey.Ask(plugintool.TemplateURLQuestion(DefaultSensuctlTemplateURL), &project); err != nil {
 					return err
 				}
 				// ask remaning common questions
@@ -51,6 +51,6 @@ func newHandlerCommand(logger *logrus.Logger) *cobra.Command {
 		},
 	}
 
-	plugintool.AddCommonFlags(cmd, DefaultHandlerTemplateURL)
+	plugintool.AddCommonFlags(cmd, DefaultSensuctlTemplateURL)
 	return cmd
 }
