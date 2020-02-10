@@ -1,0 +1,18 @@
+name: Template Tests
+
+on: [push]
+
+jobs:
+  handler:
+    name: Handler Test
+    runs-on: [ubuntu-latest]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Set up Go 1.13
+        uses: actions/setup-go@v1
+        with:
+          go-version: 1.13
+        id: go
+      - name: Test
+        run: go run . new handler --name "a b" --description "c" --github-user d --github-project e --copyright-holder "f g"
