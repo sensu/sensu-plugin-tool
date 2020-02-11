@@ -24,11 +24,14 @@ func newCheckCommand(logger *logrus.Logger) *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "check",
 		Short: "Create a new check plugin from a template",
+		PreRun: func(cmd *cobra.Command, args []string) {
+			plugintool.AddViperBindings(cmd)
+		},
 		RunE: func(cmd *cobra.Command, args []string) error {
 			project := plugintool.NewProject(logger, checkTmplFiles)
 
+			// interactive mode
 			if cmd.Flags().NFlag() == 0 {
-				// interactive mode
 				// ask for the template url
 				if err := survey.Ask(plugintool.TemplateURLQuestion(DefaultCheckTemplateURL), &project); err != nil {
 					return err
@@ -37,9 +40,10 @@ func newCheckCommand(logger *logrus.Logger) *cobra.Command {
 				if err := survey.Ask(plugintool.CommonQuestions(), &project.TemplateFields); err != nil {
 					return err
 				}
-			} else {
-				// flag mode
-				project.Validate()
+			}
+
+			if err := project.Validate(); err != nil {
+				return err
 			}
 
 			if err := project.Create(); err != nil {
