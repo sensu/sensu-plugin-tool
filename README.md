@@ -2,7 +2,7 @@
 
 - [Overview](#overview)
 - [Usage examples](#usage-examples)
-- [Installation from source and
+- [Installing from source and
   contributing](#installation-from-source-and-contributing)
 
 ## Overview
@@ -22,7 +22,7 @@ The following plugin types are currently supported:
 Creating a handler plugin using interactive mode:
 
 ```sh
-# sensu-plugin-tool new handler
+$ sensu-plugin-tool new handler
 ? Template URL https://github.com/sensu-community/handler-plugin-template
 ? Project name My Handler
 ? Description Description for My Handler
@@ -60,7 +60,6 @@ go build
 [0]: https://github.com/sensu-community/sensu-plugin-tool
 [1]: https://sensu.io
 [2]: https://github.com/sensu-community/check-plugin-template
-[3]: https://github.com/sensu-community/check-handler-template
-[4]: https://github.com/sensu-community/check-mutator-template
-[5]: https://github.com/sensu-community/check-sensuctl-template
-
+[3]: https://github.com/sensu-community/handler-plugin-template
+[4]: https://github.com/sensu-community/mutator-plugin-template
+[5]: https://github.com/sensu-community/sensuctl-plugin-template
