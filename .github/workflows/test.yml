@@ -1,0 +1,57 @@
+name: Template Tests
+
+on: [push]
+
+jobs:
+  handler:
+    name: Handler Test
+    runs-on: [ubuntu-latest]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Set up Go 1.13
+        uses: actions/setup-go@v1
+        with:
+          go-version: 1.13
+        id: go
+      - name: Test
+        run: go run . new handler --name "a b" --description "c d" --github-user e --github-project f --copyright-holder "g h"
+  check:
+    name: Check Test
+    runs-on: [ubuntu-latest]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Set up Go 1.13
+        uses: actions/setup-go@v1
+        with:
+          go-version: 1.13
+        id: go
+      - name: Test
+        run: go run . new check --name "a b" --description "c d" --github-user e --github-project f --copyright-holder "g h"
+  mutator:
+    name: Mutator Test
+    runs-on: [ubuntu-latest]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Set up Go 1.13
+        uses: actions/setup-go@v1
+        with:
+          go-version: 1.13
+        id: go
+      - name: Test
+        run: go run . new mutator --name "a b" --description "c d" --github-user e --github-project f --copyright-holder "g h"
+  sensuctl:
+    name: Sensuctl Test
+    runs-on: [ubuntu-latest]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Set up Go 1.13
+        uses: actions/setup-go@v1
+        with:
+          go-version: 1.13
+        id: go
+      - name: Test
+        run: go run . new sensuctl --name "a b" --description "c d" --github-user e --github-project f --copyright-holder "g h"

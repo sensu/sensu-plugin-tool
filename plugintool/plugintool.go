@@ -59,7 +59,9 @@ func AddCommonFlags(cmd *cobra.Command, defaultTemplateURL string) {
 	cmd.Flags().String("github-project", "", "Github project name that the plugin will belong to (required)")
 	cmd.Flags().String("copyright-year", strconv.Itoa(time.Now().Year()), "The copyright year to be used in the LICENSE file")
 	cmd.Flags().String("copyright-holder", "", "The copyright holder to be used in the LICENSE file")
+}
 
+func AddViperBindings(cmd *cobra.Command) {
 	viper.BindPFlag("name", cmd.Flags().Lookup("name"))
 	viper.BindPFlag("template-url", cmd.Flags().Lookup("template-url"))
 	viper.BindPFlag("description", cmd.Flags().Lookup("description"))
