@@ -29,7 +29,7 @@ jobs:
         id: go
       - name: Test
         run: go run . new check --name "a b" --description "c d" --github-user e --github-project f --copyright-holder "g h"
-  check:
+  mutator:
     name: Mutator Test
     runs-on: [ubuntu-latest]
     steps:
@@ -42,7 +42,7 @@ jobs:
         id: go
       - name: Test
         run: go run . new mutator --name "a b" --description "c d" --github-user e --github-project f --copyright-holder "g h"
-  check:
+  sensuctl:
     name: Sensuctl Test
     runs-on: [ubuntu-latest]
     steps:
