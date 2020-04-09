@@ -46,7 +46,7 @@ sensu-plugin-tool --name "My Handler" \
 
 ## Installing from source and contributing
 
-Download the latest version of the sensu-plugin-tool from [releases][2],
+Download the latest version of the sensu-plugin-tool from [releases][6],
 or create an executable script from this source.
 
 ### Compiling
@@ -63,3 +63,4 @@ go build
 [3]: https://github.com/sensu-community/handler-plugin-template
 [4]: https://github.com/sensu-community/mutator-plugin-template
 [5]: https://github.com/sensu-community/sensuctl-plugin-template
+[6]: https://github.com/sensu-community/sensu-plugin-tool/releases
