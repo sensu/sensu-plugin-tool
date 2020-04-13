@@ -17,6 +17,7 @@ var (
 		"LICENSE",
 		"main.go",
 		"README.md",
+		".gitignore",
 	}
 )
 
