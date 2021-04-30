@@ -4,13 +4,13 @@ import (
 	"fmt"
 
 	survey "github.com/AlecAivazis/survey/v2"
-	"github.com/sensu-community/sensu-plugin-tool/plugintool"
+	"github.com/sensu/sensu-plugin-tool/plugintool"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
 var (
-	DefaultMutatorTemplateURL = "https://github.com/sensu-community/mutator-plugin-template"
+	DefaultMutatorTemplateURL = "https://github.com/sensu/mutator-plugin-template"
 
 	mutatorTmplFiles = []string{
 		"go.mod",

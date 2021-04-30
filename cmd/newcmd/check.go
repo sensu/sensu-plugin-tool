@@ -4,13 +4,13 @@ import (
 	"fmt"
 
 	survey "github.com/AlecAivazis/survey/v2"
-	"github.com/sensu-community/sensu-plugin-tool/plugintool"
+	"github.com/sensu/sensu-plugin-tool/plugintool"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
 var (
-	DefaultCheckTemplateURL = "https://github.com/sensu-community/check-plugin-template"
+	DefaultCheckTemplateURL = "https://github.com/sensu/check-plugin-template"
 
 	checkTmplFiles = []string{
 		"go.mod",
