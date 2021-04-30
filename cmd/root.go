@@ -1,7 +1,7 @@
 package cmd
 
 import (
-	"github.com/sensu-community/sensu-plugin-tool/cmd/newcmd"
+	"github.com/sensu/sensu-plugin-tool/cmd/newcmd"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"

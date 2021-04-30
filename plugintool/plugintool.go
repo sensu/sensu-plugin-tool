@@ -9,7 +9,7 @@ import (
 	"time"
 
 	survey "github.com/AlecAivazis/survey/v2"
-	"github.com/sensu-community/sensu-plugin-tool/util"
+	"github.com/sensu/sensu-plugin-tool/util"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"

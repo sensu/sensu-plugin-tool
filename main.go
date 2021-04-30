@@ -3,7 +3,7 @@ package main
 import (
 	"os"
 
-	"github.com/sensu-community/sensu-plugin-tool/cmd"
+	"github.com/sensu/sensu-plugin-tool/cmd"
 	"github.com/sirupsen/logrus"
 )
 

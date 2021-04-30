@@ -23,7 +23,7 @@ Creating a handler plugin using interactive mode:
 
 ```sh
 $ sensu-plugin-tool new handler
-? Template URL https://github.com/sensu-community/handler-plugin-template
+? Template URL https://github.com/sensu/handler-plugin-template
 ? Project name My Handler
 ? Description Description for My Handler
 ? Github User githubuser
@@ -57,10 +57,10 @@ From the local path of the sensu-plugin-tool repository:
 go build
 ```
 
-[0]: https://github.com/sensu-community/sensu-plugin-tool
+[0]: https://github.com/sensu/sensu-plugin-tool
 [1]: https://sensu.io
-[2]: https://github.com/sensu-community/check-plugin-template
-[3]: https://github.com/sensu-community/handler-plugin-template
-[4]: https://github.com/sensu-community/mutator-plugin-template
-[5]: https://github.com/sensu-community/sensuctl-plugin-template
-[6]: https://github.com/sensu-community/sensu-plugin-tool/releases
+[2]: https://github.com/sensu/check-plugin-template
+[3]: https://github.com/sensu/handler-plugin-template
+[4]: https://github.com/sensu/mutator-plugin-template
+[5]: https://github.com/sensu/sensuctl-plugin-template
+[6]: https://github.com/sensu/sensu-plugin-tool/releases
