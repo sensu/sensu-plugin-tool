@@ -2,6 +2,9 @@
 
 - [Overview](#overview)
 - [Usage examples](#usage-examples)
+  - [Check](#check-example)
+  - [Handler](#handler-example)
+  - [AWS Service](#aws-service-example)
 - [Installing from source and
   contributing](#installation-from-source-and-contributing)
 
@@ -19,6 +22,7 @@ The following plugin types are currently supported:
 
 ## Usage examples
 
+### Handler example
 Creating a handler plugin using interactive mode:
 
 ```sh
@@ -36,10 +40,40 @@ Success!
 Creating a handler plugin using flags:
 
 ```sh
-sensu-plugin-tool --name "My Handler" \
+sensu-plugin-tool new handler \
+    --template-url "https://github.com/sensu/handler-plugin-template" \
+    --name "My Handler" \
     --description "Description for My Handler" \
     --github-user mygithubuser \
     --github-project my-handler \
+    --copyright-year 2020 \
+    --copyright-holder Me
+```
+
+### AWS service example
+Creating an AWS service check plugin using interactive mode:
+
+```sh
+$ sensu-plugin-tool new check
+? Template URL https://github.com/sensu/aws-plugin-template
+? Project name My AWS Service Check
+? Description Description for My AWS Service Check
+? Github User githubuser
+? Github Project my-aws-service-check
+? Copyright Year 2020
+? Copyright Holder Me
+Success!
+```
+
+Creating an AWS service check plugin using flags:
+
+```sh
+sensu-plugin-tool new check \
+    --template-url "https://github.com/sensu/aws-plugin-template" \
+    --name "My AWS Service Check" \
+    --description "Description for My AWS Service Check" \
+    --github-user mygithubuser \
+    --github-project my-aws-service-check \
     --copyright-year 2020 \
     --copyright-holder Me
 ```
