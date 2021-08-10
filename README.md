@@ -20,7 +20,43 @@ The following plugin types are currently supported:
 * Mutator - [default mutator template][4]
 * Sensuctl - [default sensuctl template][5]
 
+### Specialized plugin templates
+While the default templates are sufficient to get you started, there are specialized
+Cloud service templates available that maybe a better starting point when building
+new plugins targeting a cloud provider.
+
+* AWS - [aws service check template][7]
+
 ## Usage examples
+
+### Check example
+Creating a check plugin using interactive mode:
+
+```sh
+$ sensu-plugin-tool new check
+? Template URL https://github.com/sensu/check-plugin-template
+? Project name My Check
+? Description Description for My Check
+? Github User githubuser
+? Github Project my-check
+? Copyright Year 2020
+? Copyright Holder Me
+Success!
+```
+
+Creating a check plugin using flags:
+
+```sh
+sensu-plugin-tool new check \
+    --template-url "https://github.com/sensu/check-plugin-template" \
+    --name "My Check" \
+    --description "Description for My Check" \
+    --github-user mygithubuser \
+    --github-project my-check \
+    --copyright-year 2020 \
+    --copyright-holder Me
+```
+
 
 ### Handler example
 Creating a handler plugin using interactive mode:
@@ -98,3 +134,4 @@ go build
 [4]: https://github.com/sensu/mutator-plugin-template
 [5]: https://github.com/sensu/sensuctl-plugin-template
 [6]: https://github.com/sensu/sensu-plugin-tool/releases
+[7]: https://github.com/sensu/aws-plugin-template
