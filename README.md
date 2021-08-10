@@ -19,11 +19,14 @@ The following plugin types are currently supported:
 * Handler - [default handler template][3]
 * Mutator - [default mutator template][4]
 * Sensuctl - [default sensuctl template][5]
+* Custom - Must specify plugin template
 
-### Specialized plugin templates
+### Custom plugin templates
 While the default templates are sufficient to get you started, there are specialized
 Cloud service templates available that maybe a better starting point when building
 new plugins targeting a cloud provider.
+
+Currently available service template include:
 
 * AWS - [aws service check template][7]
 
@@ -87,29 +90,29 @@ sensu-plugin-tool new handler \
 ```
 
 ### AWS service example
-Creating an AWS service check plugin using interactive mode:
+Creating an AWS service plugin using interactive mode:
 
 ```sh
-$ sensu-plugin-tool new check
+$ sensu-plugin-tool new custom
 ? Template URL https://github.com/sensu/aws-plugin-template
-? Project name My AWS Service Check
-? Description Description for My AWS Service Check
+? Project name My AWS Service Plugin
+? Description Description for My AWS Service Plugin
 ? Github User githubuser
-? Github Project my-aws-service-check
+? Github Project my-aws-service-plugin
 ? Copyright Year 2020
 ? Copyright Holder Me
 Success!
 ```
 
-Creating an AWS service check plugin using flags:
+Creating an AWS service plugin using flags:
 
 ```sh
-sensu-plugin-tool new check \
+sensu-plugin-tool new custom \
     --template-url "https://github.com/sensu/aws-plugin-template" \
-    --name "My AWS Service Check" \
-    --description "Description for My AWS Service Check" \
+    --name "My AWS Service Plugin" \
+    --description "Description for My AWS Service Plugin" \
     --github-user mygithubuser \
-    --github-project my-aws-service-check \
+    --github-project my-aws-service-plugin \
     --copyright-year 2020 \
     --copyright-holder Me
 ```
