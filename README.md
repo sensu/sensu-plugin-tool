@@ -2,6 +2,9 @@
 
 - [Overview](#overview)
 - [Usage examples](#usage-examples)
+  - [Check](#check-example)
+  - [Handler](#handler-example)
+  - [AWS Service Check](#aws-service-example)
 - [Installing from source and
   contributing](#installation-from-source-and-contributing)
 
@@ -16,9 +19,40 @@ The following plugin types are currently supported:
 * Handler - [default handler template][3]
 * Mutator - [default mutator template][4]
 * Sensuctl - [default sensuctl template][5]
+* AWS Service Check - [aws service check template][7]
 
 ## Usage examples
 
+### Check example
+Creating a check plugin using interactive mode:
+
+```sh
+$ sensu-plugin-tool new check
+? Template URL https://github.com/sensu/check-plugin-template
+? Project name My Check
+? Description Description for My Check
+? Github User githubuser
+? Github Project my-check
+? Copyright Year 2020
+? Copyright Holder Me
+Success!
+```
+
+Creating a check plugin using flags:
+
+```sh
+sensu-plugin-tool new check \
+    --template-url "https://github.com/sensu/check-plugin-template" \
+    --name "My Check" \
+    --description "Description for My Check" \
+    --github-user mygithubuser \
+    --github-project my-check \
+    --copyright-year 2020 \
+    --copyright-holder Me
+```
+
+
+### Handler example
 Creating a handler plugin using interactive mode:
 
 ```sh
@@ -36,10 +70,40 @@ Success!
 Creating a handler plugin using flags:
 
 ```sh
-sensu-plugin-tool --name "My Handler" \
+sensu-plugin-tool new handler \
+    --template-url "https://github.com/sensu/handler-plugin-template" \
+    --name "My Handler" \
     --description "Description for My Handler" \
     --github-user mygithubuser \
     --github-project my-handler \
+    --copyright-year 2020 \
+    --copyright-holder Me
+```
+
+### AWS service check example
+Creating an AWS service check plugin using interactive mode:
+
+```sh
+$ sensu-plugin-tool new aws-check 
+? Template URL https://github.com/sensu/aws-plugin-template
+? Project name My AWS Service Check Plugin
+? Description Description for My AWS Service Check Plugin
+? Github User githubuser
+? Github Project my-aws-service-check-plugin
+? Copyright Year 2020
+? Copyright Holder Me
+Success!
+```
+
+Creating an AWS service check plugin using flags:
+
+```sh
+sensu-plugin-tool new aws-check \
+    --template-url "https://github.com/sensu/aws-plugin-template" \
+    --name "My AWS Service Check Plugin" \
+    --description "Description for My AWS Service Check Plugin" \
+    --github-user mygithubuser \
+    --github-project my-aws-service-check-plugin \
     --copyright-year 2020 \
     --copyright-holder Me
 ```
@@ -64,3 +128,4 @@ go build
 [4]: https://github.com/sensu/mutator-plugin-template
 [5]: https://github.com/sensu/sensuctl-plugin-template
 [6]: https://github.com/sensu/sensu-plugin-tool/releases
+[7]: https://github.com/sensu/aws-plugin-template
