@@ -4,7 +4,7 @@
 - [Usage examples](#usage-examples)
   - [Check](#check-example)
   - [Handler](#handler-example)
-  - [AWS Service](#aws-service-example)
+  - [AWS Service Check](#aws-service-example)
 - [Installing from source and
   contributing](#installation-from-source-and-contributing)
 
@@ -19,16 +19,7 @@ The following plugin types are currently supported:
 * Handler - [default handler template][3]
 * Mutator - [default mutator template][4]
 * Sensuctl - [default sensuctl template][5]
-* Custom - Must specify plugin template
-
-### Custom plugin templates
-While the default templates are sufficient to get you started, there are specialized
-Cloud service templates available that maybe a better starting point when building
-new plugins targeting a cloud provider.
-
-Currently available service template include:
-
-* AWS - [aws service check template][7]
+* AWS Service Check - [aws service check template][7]
 
 ## Usage examples
 
@@ -89,30 +80,30 @@ sensu-plugin-tool new handler \
     --copyright-holder Me
 ```
 
-### AWS service example
-Creating an AWS service plugin using interactive mode:
+### AWS service check example
+Creating an AWS service check plugin using interactive mode:
 
 ```sh
-$ sensu-plugin-tool new custom
+$ sensu-plugin-tool new aws-check 
 ? Template URL https://github.com/sensu/aws-plugin-template
-? Project name My AWS Service Plugin
-? Description Description for My AWS Service Plugin
+? Project name My AWS Service Check Plugin
+? Description Description for My AWS Service Check Plugin
 ? Github User githubuser
-? Github Project my-aws-service-plugin
+? Github Project my-aws-service-check-plugin
 ? Copyright Year 2020
 ? Copyright Holder Me
 Success!
 ```
 
-Creating an AWS service plugin using flags:
+Creating an AWS service check plugin using flags:
 
 ```sh
-sensu-plugin-tool new custom \
+sensu-plugin-tool new aws-check \
     --template-url "https://github.com/sensu/aws-plugin-template" \
-    --name "My AWS Service Plugin" \
-    --description "Description for My AWS Service Plugin" \
+    --name "My AWS Service Check Plugin" \
+    --description "Description for My AWS Service Check Plugin" \
     --github-user mygithubuser \
-    --github-project my-aws-service-plugin \
+    --github-project my-aws-service-check-plugin \
     --copyright-year 2020 \
     --copyright-holder Me
 ```

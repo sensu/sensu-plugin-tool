@@ -14,6 +14,6 @@ func NewHelpCommand(logger *logrus.Logger) *cobra.Command {
 	cmd.AddCommand(newCheckCommand(logger))
 	cmd.AddCommand(newMutatorCommand(logger))
 	cmd.AddCommand(newSensuctlCommand(logger))
-	cmd.AddCommand(newCustomCommand(logger))
+	cmd.AddCommand(newAWSCheckCommand(logger))
 	return cmd
 }

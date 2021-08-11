@@ -10,8 +10,8 @@ import (
 )
 
 var (
-
-	customTmplFiles = []string{
+	DefaultAWSCheckTemplateURL = "https://github.com/sensu/aws-plugin-template"
+	awsCheckTmplFiles          = []string{
 		"go.mod",
 		"LICENSE",
 		"main.go",
@@ -20,23 +20,23 @@ var (
 	}
 )
 
-func newCustomCommand(logger *logrus.Logger) *cobra.Command {
+func newAWSCheckCommand(logger *logrus.Logger) *cobra.Command {
 	cmd := &cobra.Command{
-		Use:   "custom",
-		Short: "Create a new custom plugin from a template",
+		Use:   "aws-check",
+		Short: "Create a new AWS check plugin from a template",
 		PreRun: func(cmd *cobra.Command, args []string) {
 			plugintool.AddViperBindings(cmd)
 		},
 		RunE: func(cmd *cobra.Command, args []string) error {
-			project := plugintool.NewProject(logger, customTmplFiles)
+			project := plugintool.NewProject(logger, awsCheckTmplFiles)
 
 			// interactive mode
 			if cmd.Flags().NFlag() == 0 {
 				// ask for the template url
-				if err := survey.Ask(plugintool.TemplateURLQuestion(""), &project); err != nil {
+				if err := survey.Ask(plugintool.TemplateURLQuestion(DefaultAWSCheckTemplateURL), &project); err != nil {
 					return err
 				}
-				// ask remaning common questions
+				// ask remaining common questions
 				if err := survey.Ask(plugintool.CommonQuestions(), &project.TemplateFields); err != nil {
 					return err
 				}
@@ -54,7 +54,7 @@ func newCustomCommand(logger *logrus.Logger) *cobra.Command {
 			return nil
 		},
 	}
-        plugintool.AddCommonFlags(cmd, "")
+	plugintool.AddCommonFlags(cmd, DefaultAWSCheckTemplateURL)
 
 	return cmd
 }
